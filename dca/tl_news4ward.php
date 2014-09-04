@@ -19,7 +19,7 @@ $GLOBALS['TL_DCA']['tl_news4ward']['fields']['categories'] = array
   'inputType'   => 'multiColumnWizard',
   'eval'        => array (
     'columnFields' => array (
-      'multicategory' => array (
+      'category' => array (
         'label'     => array('&nbsp;'),
         'inputType' => 'text'
       )

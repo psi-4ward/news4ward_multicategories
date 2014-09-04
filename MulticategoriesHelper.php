@@ -21,13 +21,18 @@ class MulticategoriesHelper extends \Controller
 
   /**
    * Return the WHERE-condition if a the url has an cat-parameter
+   * @param \News4ward\Module\Listing $objModule
    * @return bool|string
    */
-  public function multicategoryFilter()
+  public function multicategoryFilter($objModule)
   {
-    if(!$this->Input->get('cat')) return false;
-
-    $cat = urldecode($this->Input->get('cat'));
+    if($this->Input->get('cat')) {
+      $cat = urldecode($this->Input->get('cat'));
+    } else if($objModule->news4ward_categoryFilter) {
+      $cat = $objModule->news4ward_categoryFilter;
+    } else {
+      return false;
+    }
 
     return array
     (
@@ -72,5 +77,25 @@ class MulticategoriesHelper extends \Controller
     }
 
     $objTemplate->categories = $erg;
+  }
+
+
+  /**
+   * Fetch all multicategories for the current archive
+   *
+   * @param Data_Container $dc
+   * @return array
+   */
+  public function getCategories($dc)
+  {
+    $cats = array();
+    $multicategories = \Database::getInstance()
+                                ->prepare('SELECT categories FROM tl_news4ward WHERE id=?')
+                                ->execute($dc->activeRecord->pid);
+    $multicategories = deserialize($multicategories->categories, true);
+    foreach($multicategories as $v) {
+      $cats[] = $v['category'];
+    }
+    return $cats;
   }
 }
