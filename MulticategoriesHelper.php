@@ -28,17 +28,28 @@ class MulticategoriesHelper extends \Controller
   {
     if($this->Input->get('cat')) {
       $cat = urldecode($this->Input->get('cat'));
+      return array
+      (
+        'where'  => 'tl_news4ward_article.categories LIKE ?',
+        'values' => array('%"'.$cat.'"%')
+      );
     } else if($objModule->news4ward_categoryFilter) {
-      $cat = $objModule->news4ward_categoryFilter;
-    } else {
-      return false;
+      $cats = deserialize($objModule->news4ward_categoryFilter, true);
+      $where = array();
+      $values = array();
+      foreach($cats as $cat) {
+        $where[] = 'tl_news4ward_article.categories LIKE ?';
+        $values[] = '%"'.$cat.'"%';
+      }
+
+      return array
+      (
+        'where'  => implode(' OR ', $where),
+        'values' => $values
+      );
     }
 
-    return array
-    (
-      'where'  => 'tl_news4ward_article.categories LIKE ?',
-      'values' => array('%"'.$cat.'"%')
-    );
+    return false;
   }
 
 

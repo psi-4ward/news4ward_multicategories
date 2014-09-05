@@ -30,5 +30,5 @@ CREATE TABLE `tl_news4ward_article` (
 --
 
 CREATE TABLE `tl_module` (
-  `news4ward_categoryFilter` varchar(255) NOT NULL default ''
+  `news4ward_categoryFilter` blob NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

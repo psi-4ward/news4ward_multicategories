@@ -18,14 +18,14 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardMulticategories']    = '{t
 // Fields
 $GLOBALS['TL_DCA']['tl_module']['fields']['news4ward_categoryFilter'] = array(
   'label'             => &$GLOBALS['TL_LANG']['tl_module']['news4ward_categoryFilter'],
-  'inputType'         => 'select',
+  'inputType'         => 'checkbox',
   'options_callback'  => array('News4ward\MulticategoriesHelper', 'getCategories'),
-  'eval'              => array('includeBlankOption' => true, 'tl_class' => 'w50')
+  'eval'              => array('includeBlankOption' => true, 'tl_class' => 'clr', 'multiple' => true)
 );
 
 // listing Palette
 $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardList'] = str_replace(
-  ';{config_legend},',
-  ';{config_legend},news4ward_categoryFilter,',
+  ',news4ward_ignoreFilters',
+  ',news4ward_ignoreFilters,news4ward_categoryFilter',
   $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardList']
 );

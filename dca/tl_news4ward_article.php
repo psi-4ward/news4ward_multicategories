@@ -18,7 +18,7 @@ $GLOBALS['TL_DCA']['tl_news4ward_article']['fields']['categories'] = array
   'inputType'         => 'checkbox',
   'exclude'           => true,
   'options_callback'  => array('News4ward\MulticategoriesHelper', 'getCategories'),
-  'eval'              => array('includeBlankOption'=>true, 'multiple'=>true, 'tl_class'=>'w50')
+  'eval'              => array('includeBlankOption'=>true, 'multiple'=>true, 'tl_class'=>'clr')
 );
 
 
