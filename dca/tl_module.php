@@ -19,7 +19,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardMulticategories']    = '{t
 $GLOBALS['TL_DCA']['tl_module']['fields']['news4ward_categoryFilter'] = array(
   'label'             => &$GLOBALS['TL_LANG']['tl_module']['news4ward_categoryFilter'],
   'inputType'         => 'checkbox',
-  'options_callback'  => array('News4ward\MulticategoriesHelper', 'getCategories'),
+  'options_callback'  => array('News4ward\MulticategoriesHelper', 'getCategoriesForTlModule'),
   'eval'              => array('includeBlankOption' => true, 'tl_class' => 'clr', 'multiple' => true)
 );
 

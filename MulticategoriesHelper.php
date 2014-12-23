@@ -100,6 +100,29 @@ class MulticategoriesHelper extends \Controller
   public function getCategories($dc)
   {
     $archives = deserialize($dc->activeRecord->news4ward_archives, true);
+    dump($archives);
+
+    $cats = array();
+    $multicategories = \Database::getInstance()
+                                ->prepare('SELECT categories FROM tl_news4ward WHERE id=?')
+                                ->execute($dc->activeRecord->pid);
+    $multicategories = deserialize($multicategories->categories, true);
+    foreach($multicategories as $v) {
+      $cats[] = $v['category'];
+    }
+    return $cats;
+  }
+
+
+  /**
+   * Fetch all multicategories for the tl_module options callback
+   *
+   * @param Data_Container $dc
+   * @return array
+   */
+  public function getCategoriesForTlModule($dc)
+  {
+    $archives = deserialize($dc->activeRecord->news4ward_archives, true);
 
     $cats = array();
     $objArchives = \Database::getInstance()
