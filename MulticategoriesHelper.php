@@ -99,13 +99,17 @@ class MulticategoriesHelper extends \Controller
    */
   public function getCategories($dc)
   {
+    $archives = deserialize($dc->activeRecord->news4ward_archives, true);
+
     $cats = array();
-    $multicategories = \Database::getInstance()
-                                ->prepare('SELECT categories FROM tl_news4ward WHERE id=?')
-                                ->execute($dc->activeRecord->pid);
-    $multicategories = deserialize($multicategories->categories, true);
-    foreach($multicategories as $v) {
-      $cats[] = $v['category'];
+    $objArchives = \Database::getInstance()
+                                ->prepare('SELECT categories FROM tl_news4ward WHERE FIND_IN_SET(id,?)')
+                                ->execute(implode(',', $archives));
+
+    while($objArchives->next()) {
+      foreach(deserialize($objArchives->categories, true) as $v) {
+        $cats[] = $v['category'];
+      }
     }
     return $cats;
   }

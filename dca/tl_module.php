@@ -29,3 +29,5 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardList'] = str_replace(
   ',news4ward_ignoreFilters,news4ward_categoryFilter',
   $GLOBALS['TL_DCA']['tl_module']['palettes']['news4wardList']
 );
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['news4ward_archives']['eval']['submitOnChange'] = true;
