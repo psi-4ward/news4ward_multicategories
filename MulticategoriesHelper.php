@@ -100,7 +100,6 @@ class MulticategoriesHelper extends \Controller
   public function getCategories($dc)
   {
     $archives = deserialize($dc->activeRecord->news4ward_archives, true);
-    dump($archives);
 
     $cats = array();
     $multicategories = \Database::getInstance()
