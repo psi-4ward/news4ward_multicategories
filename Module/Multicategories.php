@@ -90,6 +90,8 @@ class Multicategories extends Module
     $cats = array_unique($cats);
     natcasesort($cats);
 
+    $this->Template->resetHref = $this->generateFrontendUrl($jumpTo);
+
     $arrCats = array();
     foreach($cats as $cat) {
       $arr = array('category' => $cat);
