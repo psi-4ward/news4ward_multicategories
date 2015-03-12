@@ -74,14 +74,20 @@ class Multicategories extends Module
       return;
     }
 
-    // get jumpTo page
-    $jumpTo = $GLOBALS['objPage']->row();
-    if($this->jumpTo) {
+    // get jumpTo
+    if($this->jumpTo)
+    {
       $objJumpTo = $this->Database->prepare('SELECT id,alias FROM tl_page WHERE id=?')->execute($this->jumpTo);
-      if($jumpTo->numRows) {
-        $jumpTo = $objJumpTo->row();
+      if(!$objJumpTo->numRows)
+      {
+          $objJumpTo = $GLOBALS['objPage'];
       }
     }
+    else
+    {
+      $objJumpTo = $GLOBALS['objPage'];
+    }
+    $jumpTo = $objJumpTo->row();
 
     $cats = array();
     while($objCats->next()) {
