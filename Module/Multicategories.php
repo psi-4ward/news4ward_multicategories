@@ -78,7 +78,7 @@ class Multicategories extends Module
     $jumpTo = $GLOBALS['objPage']->row();
     if($this->jumpTo) {
       $objJumpTo = $this->Database->prepare('SELECT id,alias FROM tl_page WHERE id=?')->execute($this->jumpTo);
-      if($jumpTo->numRows) {
+      if($objJumpTo->numRows) {
         $jumpTo = $objJumpTo->row();
       }
     }
