@@ -28,6 +28,9 @@
     "contao/core": ">=3.1,<4",
     "psi/news4ward": "~2"
   },
+  "conflict": {
+    "psi/news4ward_categories": "*"
+  },
   "extra": {
     "contao": {
       "sources": {
